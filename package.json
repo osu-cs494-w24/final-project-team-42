@@ -1,8 +1,8 @@
 {
-  "name": "assignment-3",
+  "name": "final-project",
   "private": true,
   "version": "0.1.0",
-  "description": "Data fetching and component styling",
+  "description": "CS 494 Final Project",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,8 +11,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@tanstack/react-query": "^5.28.4",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
