@@ -51,10 +51,10 @@ export default function Search() {
             {error && <ErrorContainer>Error: {error.message}</ErrorContainer>}
             {isLoading && <Spinner />}
             <ul css={styles}>
-                {data?.list && data.list.map(repo => (
-                    <li key={repo.id}>
-                        <p>{repo.title}</p>
-                        <p>{repo.image}</p>
+                {data?.results && data.results.map(recipe => (
+                    <li key={recipe.id}>
+                        <p>{recipe.title}</p>
+                        <img src={recipe.image} alt={recipe.title}/>
                     </li>
                 ))}
             </ul>
