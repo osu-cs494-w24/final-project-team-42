@@ -6,16 +6,18 @@ import { css } from '@emotion/react'
 import ErrorContainer from '../components/ErrorContainer'
 import Spinner from '../components/Spinner'
 
-const API_KEY = 'abd43a26c5aa46e1b48bd1f860160d44'
+// const API_KEY = 'abd43a26c5aa46e1b48bd1f860160d44'
+const API_KEY = 'eeccfccae4944843a48b3f867c77363e' // nicolas' api key
 
 export default function Search() {
+    const [ searchParams, setSearchParams ] = useSearchParams()
+    const query = searchParams.get("q")
+
     const [diet, setDiet] = useState('')
     const [intolerance, setIntolerance] = useState('')
     const [cuisine, setCuisine] = useState('')
     const [ inputQuery, setInputQuery ] = useState(query || "")
 
-    const [ searchParams, setSearchParams ] = useSearchParams()
-    const query = searchParams.get("q")
     
     const styles = css `
         margin: 0;
