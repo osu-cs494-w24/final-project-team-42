@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 // import App from './App'
 import FetchSearch from './pages/Search'
 import RandomSearch from './pages/RandomSearch'
+import RecipeDetails from './pages/RecipeDetails'
 
 const queryClient = new QueryClient()
 

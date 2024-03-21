@@ -44,7 +44,7 @@ const RandomRecipe = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  const styles = css `
+  const styles = css`
   margin: 20;
   display: flex;
   flex-wrap: wrap;
@@ -85,7 +85,7 @@ const RandomRecipe = () => {
           <RecipeSummary dangerouslySetInnerHTML={{ __html: recipe.summary }}></RecipeSummary>
           <RecipeDetails>Ready in: {recipe.readyInMinutes} minutes</RecipeDetails>
           <RecipeDetails>Servings: {recipe.servings}</RecipeDetails>
-          <RecipeDetails><RecipeLink href={recipe.sourceUrl}>View Recipe</RecipeLink></RecipeDetails>
+          <RecipeDetails><RecipeLink href={recipe.sourceUrl} rel='noreferrer' target='_blank'>View Recipe</RecipeLink></RecipeDetails>
         </div>
       ) : (
         <p>Unable to load recipe.</p>

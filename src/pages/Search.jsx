@@ -19,7 +19,7 @@ export default function Search() {
     const [ inputQuery, setInputQuery ] = useState(query || "")
 
     
-    const styles = css `
+    const styles = css`
         margin: 0;
         display: flex;
         flex-wrap: wrap;
@@ -128,7 +128,7 @@ export default function Search() {
             <ul css={styles}>
                 {data?.results && data.results.map(recipe => (
                     <li key={recipe.id}>
-                        <p>{recipe.title}</p>
+                        <a href='/details'>{recipe.title}</a>
                         <img src={recipe.image} alt={recipe.title}/>
                     </li>
                 ))}
