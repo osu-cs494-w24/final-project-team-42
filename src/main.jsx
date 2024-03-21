@@ -6,17 +6,14 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 // import App from './App'
 import FetchSearch from './pages/Search'
+import RandomSearch from './pages/RandomSearch'
 
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <FetchSearch />,
-        children: [
-            { path: "fetch-search", element: <FetchSearch /> },
-            { index: true, element: <Navigate to="/fetch-search" replace /> }
-        ]
+        element: <RandomSearch />,
     }
 ])
 
@@ -27,3 +24,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </QueryClientProvider>
     </React.StrictMode>,
 )
+
+/*
+        Path to make the fetchSearch work
+
+        path: "/",
+        element: <FetchSearch />,
+        children: [
+            { path: "fetch-search", element: <FetchSearch /> },
+            { index: true, element: <Navigate to="/fetch-search" replace /> }
+        ]
+*/
