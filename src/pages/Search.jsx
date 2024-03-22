@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSearchParams, Link, Outlet } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { css } from '@emotion/react'
+import styled from '@emotion/styled'
 
 
 import ErrorContainer from '../components/ErrorContainer'
@@ -26,6 +27,29 @@ export default function Search() {
         flex-wrap: wrap;
         list-style: none;
         padding: 0;
+    `
+
+    const Results = styled.ul`
+        padding: 0;
+        li {
+        margin: 1rem;
+        padding: 1rem;
+        border: 1px solid #aaa;
+        border-radius: 10px;
+        width: 18rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    `
+
+    const formStyles = css`
+        padding: 2rem;
+    `
+
+    const ButtonStyles = styled.button`
+        border-radius: 0;
+        height: 1.5rem;
     `
 
     const queryFn = async () => {
@@ -55,7 +79,7 @@ export default function Search() {
     console.log("== response body:", data)
 
     return (
-        <div>
+        <div style={{padding: '2rem'}}>
             <form onSubmit={e => {
                 e.preventDefault()
                 setSearchParams({ q: inputQuery, diet, intolerance, cuisine })
@@ -63,70 +87,79 @@ export default function Search() {
                 console.log("intolerances: ", intolerance)
                 console.log("cuisine: ", cuisine)
             }}>
-                <input value={inputQuery} onChange={e => setInputQuery(e.target.value)} />
-                <button placeholder="Enter Desired Food" type="submit">Search</button>
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <input style={{
+                        width: '50%',
+                        marginBottom: '0.5rem',
+                        marginRight: '0.5rem',
 
-                <select value={diet} onChange={e => setDiet(e.target.value)}>
-                    <option value="">Select Diet</option>
-                    <option value="gluten free">Gluten Free</option>
-                    <option value="vegetarian">Vegetarian</option>
-                    <option value="vegan">Vegan</option>
-                    <option value="pescetarian">Pescetarian</option>
-                    <option value="paleo">Paleo</option>
-                    <option value="keto">Keto</option>
-                </select>
+                        }} value={inputQuery} onChange={e => setInputQuery(e.target.value)} />
+                    <ButtonStyles placeholder="Enter Desired Food" type="submit">Search</ButtonStyles>
+                </div>
 
-                <select value={intolerance} onChange={e => setIntolerance(e.target.value)}>
-                    <option value="">Select Intolerance</option>
-                    <option value="dairy">Dairy</option>
-                    <option value="egg">Egg</option>
-                    <option value="gluten">Gluten</option>
-                    <option value="grain">Grain</option>
-                    <option value="peanut">Peanut</option>
-                    <option value="seafood">Seafood</option>
-                    <option value="sesame">Sesame</option>
-                    <option value="shellfish">Shellfish</option>
-                    <option value="soy">Soy</option>
-                    <option value="sulfite">Sulfite</option>
-                    <option value="tree nut">Tree Nut</option>
-                    <option value="wheat">Wheat</option>
-                </select>
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <select value={diet} onChange={e => setDiet(e.target.value)}>
+                        <option value="">Select Diet</option>
+                        <option value="gluten free">Gluten Free</option>
+                        <option value="vegetarian">Vegetarian</option>
+                        <option value="vegan">Vegan</option>
+                        <option value="pescetarian">Pescetarian</option>
+                        <option value="paleo">Paleo</option>
+                        <option value="keto">Keto</option>
+                    </select>
 
-                <select value={cuisine} onChange={e => setCuisine(e.target.value)}>
-                    <option value="">Select Cuisine</option>
-                    <option value="african">African</option>
-                    <option value="asian">Asian</option>
-                    <option value="american">American</option>
-                    <option value="british">British</option>
-                    <option value="cajun">Cajun</option>
-                    <option value="caribbean">Caribbean</option>
-                    <option value="chinese">Chinese</option>
-                    <option value="eastern european">Eastern European</option>
-                    <option value="european">European</option>
-                    <option value="french">French</option>
-                    <option value="german">German</option>
-                    <option value="greek">Greek</option>
-                    <option value="indian">Indian</option>
-                    <option value="irish">Irish</option>
-                    <option value="italian">Italian</option>
-                    <option value="japanese">Japanese</option>
-                    <option value="jewish">Jewish</option>
-                    <option value="korean">Korean</option>
-                    <option value="latin american">Latin American</option>
-                    <option value="mediterranean">Mediterranean</option>
-                    <option value="mexican">Mexican</option>
-                    <option value="middle eastern">Middle Eastern</option>
-                    <option value="nordic">Nordic</option>
-                    <option value="southern">Southern</option>
-                    <option value="spanish">Spanish</option>
-                    <option value="thai">Thai</option>
-                    <option value="vietnamese">Vietnamese</option>
-                </select>
+                    <select value={intolerance} onChange={e => setIntolerance(e.target.value)}>
+                        <option value="">Select Intolerance</option>
+                        <option value="dairy">Dairy</option>
+                        <option value="egg">Egg</option>
+                        <option value="gluten">Gluten</option>
+                        <option value="grain">Grain</option>
+                        <option value="peanut">Peanut</option>
+                        <option value="seafood">Seafood</option>
+                        <option value="sesame">Sesame</option>
+                        <option value="shellfish">Shellfish</option>
+                        <option value="soy">Soy</option>
+                        <option value="sulfite">Sulfite</option>
+                        <option value="tree nut">Tree Nut</option>
+                        <option value="wheat">Wheat</option>
+                    </select>
+
+                    <select value={cuisine} onChange={e => setCuisine(e.target.value)}>
+                        <option value="">Select Cuisine</option>
+                        <option value="african">African</option>
+                        <option value="asian">Asian</option>
+                        <option value="american">American</option>
+                        <option value="british">British</option>
+                        <option value="cajun">Cajun</option>
+                        <option value="caribbean">Caribbean</option>
+                        <option value="chinese">Chinese</option>
+                        <option value="eastern european">Eastern European</option>
+                        <option value="european">European</option>
+                        <option value="french">French</option>
+                        <option value="german">German</option>
+                        <option value="greek">Greek</option>
+                        <option value="indian">Indian</option>
+                        <option value="irish">Irish</option>
+                        <option value="italian">Italian</option>
+                        <option value="japanese">Japanese</option>
+                        <option value="jewish">Jewish</option>
+                        <option value="korean">Korean</option>
+                        <option value="latin american">Latin American</option>
+                        <option value="mediterranean">Mediterranean</option>
+                        <option value="mexican">Mexican</option>
+                        <option value="middle eastern">Middle Eastern</option>
+                        <option value="nordic">Nordic</option>
+                        <option value="southern">Southern</option>
+                        <option value="spanish">Spanish</option>
+                        <option value="thai">Thai</option>
+                        <option value="vietnamese">Vietnamese</option>
+                    </select>
+                </div>
             </form>
             <h2>Food Results for: {query}</h2>
             {error && <ErrorContainer>Error: {error.message}</ErrorContainer>}
             {isLoading && <Spinner />}
-            <ul css={styles}>
+            <Results css={styles}>
                 {data?.results && data.results.map(recipe => (
                     <li key={recipe.id}>
                         <p>
@@ -135,7 +168,7 @@ export default function Search() {
                         <img src={recipe.image} alt={recipe.title}/>
                     </li>
                 ))}
-            </ul>
+            </Results>
         </div>
     )
 }

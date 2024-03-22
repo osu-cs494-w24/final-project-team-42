@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import styled from '@emotion/styled'
 
 const API_KEY = 'eeccfccae4944843a48b3f867c77363e' // nicolas' api key
+// '0d276903bc344aedb88273ff17d9be70'
 
 const recipeDetails = {
     title: "Spaghetti Carbonara",
@@ -30,7 +31,8 @@ const recipeDetails = {
 }
 
 const Body = styled.div`
-    margin: 2rem;
+    padding: 2rem;
+    /* background-image: linear-gradient(45deg, lightgreen, lightblue); */
 `
 const RecipeImage = styled.img`
     box-shadow: 0 4px 8px 0 #333;
@@ -66,6 +68,12 @@ const Nutrition = styled.div`
     }
 `
 
+const StyledButton = styled.button`
+    border-radius: 0;
+    height: 2rem;
+    cursor: pointer;
+`
+
 export default function RecipeDetails() {
     // TODO: find a way to grab the data from the recipe that was clicked on from the search page
     // Display the individual recipe details and style it to make it look nice and be responsive
@@ -96,6 +104,18 @@ export default function RecipeDetails() {
     return (
         <Body>
             <h1>Recipe Details</h1>
+            {/* {recipeDetails ? 
+                (<form onSubmit={(e) => {
+                    e.preventDefault()
+                    console.log("Added favorite: ", recipeDetails)
+                    // dispatch(addTodo(text))
+                    // setText("")
+                }}>
+                    <StyledButton>Add to Favorites</StyledButton>
+                </form>)
+
+             : (null)} */}
+
             {recipeDetails ? (
                 <div>
                     <h2>{recipeDetails.title}</h2>
