@@ -5,7 +5,7 @@ import { css } from '@emotion/react'
 import ErrorContainer from '../components/ErrorContainer'
 import Spinner from '../components/Spinner'
 
-const API_KEY = '0d276903bc344aedb88273ff17d9be70'
+// const API_KEY = '0d276903bc344aedb88273ff17d9be70'
 
 import { useDispatch } from 'react-redux';
 import { addToFavorites } from '../redux/favoriteSlice';
