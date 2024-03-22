@@ -7,6 +7,9 @@ import Spinner from '../components/Spinner'
 
 const API_KEY = '0d276903bc344aedb88273ff17d9be70'
 
+import { useDispatch } from 'react-redux';
+import { addToFavorites } from '../redux/favoriteSlice';
+
 // Styled components
 const RecipeContainer = styled.div`
   margin: 20px;
@@ -52,6 +55,12 @@ const RandomRecipe = () => {
   padding: 0;
   `
 
+  const dispatch = useDispatch();
+
+    const handleAddToFavorites = (names, ids) => {
+        dispatch(addToFavorites({ name: names, id: ids }));
+    }
+
   useEffect(() => {
     const fetchRandomRecipe = async () => {
       setIsLoading(true)
@@ -86,6 +95,9 @@ const RandomRecipe = () => {
           <RecipeDetails>Ready in: {recipe.readyInMinutes} minutes</RecipeDetails>
           <RecipeDetails>Servings: {recipe.servings}</RecipeDetails>
           <RecipeDetails><RecipeLink href={recipe.sourceUrl} rel='noreferrer' target='_blank'>View Recipe</RecipeLink></RecipeDetails>
+          <div>
+            <button onClick={() => handleAddToFavorites(recipe.title, recipe.image)}>Add to Favorites</button>
+          </div>
         </div>
       ) : (
         <p>Unable to load recipe.</p>
