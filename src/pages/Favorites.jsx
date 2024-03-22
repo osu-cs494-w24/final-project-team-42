@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { css } from '@emotion/react'
+import FavoriteCard from '../components/FavoriteCard'
+import { Card, Button } from 'antd'
 
 import { selectfavorites } from '../redux/favoriteSlice'
 import { addToFavorites } from '../redux/favoriteSlice'
@@ -13,24 +15,88 @@ export default function favorites(items) {
     const favorites = useSelector(selectfavorites)
 
     const handleAddToFavorites = () => {
-        dispatch(addToFavorites({name: "test", id: "1"}));
+        dispatch(addToFavorites({name: "test", id: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Temp_plate.svg/2560px-Temp_plate.svg.png"}));
     }
 
 
-    const removeFromFavorites = () => {
+    const removeFromFavorites = (name) => {
         dispatch(removeFromFavorites(name));
     }
+
+    const image_container = css`
+    width: 130px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    `
+
+    const image_style = css`
+        width: 100%;
+        height: auto;
+    `
+
+    const card_style = css`
+        padding: 20px;
+        margin: 5px; 
+        border-radius: 10px;
+        width: 260px;
+        border: 1px solid #DDDCE3; 
+        background-color: #fff; 
+        font-family: 'Gill Sans', sans-serif;
+        font-size: 15px;
+    `
+
+    const remove_button = css`
+        background-color: #6fa8dc;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-left: 5px;
+    `
 
     return (
         <div>
             <h1>Favorites</h1>
             <button onClick={handleAddToFavorites}>Add to Favorites</button>
             {favorites.map((item, index) => (
-                    <li key={index}>
-                        <h3>{item.name}</h3>
-                        <h3>{item.id}</h3>
-                    </li>
+                <Card key={item.id} style={{ width: 300, margin: '10px' }}>
+                    <div css={image_container}>
+                        <img
+                            src = {item.id}
+                            alt="Item img"
+                            css = {image_style}
+                        />
+                    </div>
+                    <div css={{fontsize: '14px'}}>
+                        <p>Name: {item.name}</p>
+                    </div>
+                    <div>
+                        <button css={remove_button} onClick={() => HandleremoveFromFavorites(item.id)}>
+                            Remove
+                        </button>
+                    </div>
+                </Card>
             ))}
         </div>
     )
 }
+
+/*
+add this to code to add button
+
+import { selectfavorites } from '../redux/favoriteSlice'
+import { addToFavorites } from '../redux/favoriteSlice'
+import {useDispatch, useSelector} from 'react-redux'
+
+
+const dispatch = useDispatch();
+  const favorites = useSelector(selectfavorites)
+
+  const handleAddToFavorites = () => {
+        dispatch(addToFavorites({name: "test", id: "1"}));
+   }
+
+   <button onClick={handleAddToFavorites}>Add to Favorites</button>
+*/
