@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, Link, Outlet } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { css } from '@emotion/react'
+
 
 import ErrorContainer from '../components/ErrorContainer'
 import Spinner from '../components/Spinner'
@@ -128,7 +129,9 @@ export default function Search() {
             <ul css={styles}>
                 {data?.results && data.results.map(recipe => (
                     <li key={recipe.id}>
-                        <a href='/details'>{recipe.title}</a>
+                        <p>
+                            <Link to={`/search/${recipe.id}`}>{recipe.title}</Link>
+                        </p>
                         <img src={recipe.image} alt={recipe.title}/>
                     </li>
                 ))}
