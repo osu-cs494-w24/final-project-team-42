@@ -20,13 +20,18 @@ export default function favorites(items) {
         dispatch(addToFavorites({name, id}));
     }
 
+    const containerStyle = css`
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); // Adjust the min width as needed
+        gap: 20px;
+    `
 
     const handleRemoveFromFavorites = (name) => {
         dispatch(removeFromFavorites(name));
     }
 
     const image_container = css`
-    width: 130px;
+    width: 150px;
     height: 90px;
     display: flex;
     justify-content: center;
@@ -61,25 +66,27 @@ export default function favorites(items) {
     return (
         <div>
             <h1>Favorites</h1>
-            {favorites.map((item, index) => (
-                <Card key={index} style={{ width: 300, margin: '10px' }}>
-                    <div css={image_container}>
-                        <img
-                            src={item.id}
-                            alt="Item img"
-                            css={image_style}
-                        />
-                    </div>
-                    <div css={{fontsize: '14px'}}>
-                        <p>Name: {item.name}</p>
-                    </div>
-                    <div>
-                        <button css={remove_button} onClick={() => handleRemoveFromFavorites(item.id)}>
-                            Remove
-                        </button>
-                    </div>
-                </Card>
-            ))}
+            <div css={containerStyle}>
+                {favorites.map((item, index) => (
+                    <Card key={index} style={{ width: 300, margin: '10px' }}>
+                        <div css={image_container}>
+                            <img
+                                src={item.id}
+                                alt="Item img"
+                                css={image_style}
+                            />
+                        </div>
+                        <div css={{fontsize: '14px'}}>
+                            <p>{item.name}</p>
+                        </div>
+                        <div>
+                            <button css={remove_button} onClick={() => handleRemoveFromFavorites(item.id)}>
+                                Remove
+                            </button>
+                        </div>
+                    </Card>
+                ))}
+            </div>
         </div>
     )
 }
