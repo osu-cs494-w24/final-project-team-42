@@ -9,6 +9,10 @@ import FetchSearch from './pages/Search'
 import RandomSearch from './pages/RandomSearch'
 import RecipeDetails from './pages/RecipeDetails'
 
+import { Provider } from 'react-redux'
+import store from '/redux/store'
+
+
 import { Root, Home, ErrorPage } from './Routes'
 
 const queryClient = new QueryClient()
@@ -30,7 +34,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
+            <Provider store={store}>
+                <RouterProvider router={router} />
+            </Provider>
         </QueryClientProvider>
     </React.StrictMode>,
 )
