@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import FetchSearch from './pages/Search'
 import RandomSearch from './pages/RandomSearch'
 import RecipeDetails from './pages/RecipeDetails'
+import Favorites from './pages/Favorites'
 
 import { Provider } from 'react-redux'
 import store from './redux/store'
@@ -26,7 +27,8 @@ const router = createBrowserRouter([
             { index: true, element: <Home /> },
             { path: "search", element: <FetchSearch /> },
             { path: "search/:recipe", element: <RecipeDetails /> },
-            { path: "random-recipe", element: <RandomSearch /> }
+            { path: "random-recipe", element: <RandomSearch /> },
+            { path: "favorites", element: <Favorites /> }
         ]
     }
 ])

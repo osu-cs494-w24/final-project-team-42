@@ -27,6 +27,7 @@ export function Root(props) {
                     <li><NavLink to="/">Home</NavLink></li>
                     <li><NavLink to="/search">Search</NavLink></li>
                     <li><NavLink to="/random-recipe">Random Recipe</NavLink></li>
+                    <li><NavLink to="/favorites">Favorites</NavLink></li>
                 </ul>
             </nav>
             <main>{children || <Outlet />}</main>
