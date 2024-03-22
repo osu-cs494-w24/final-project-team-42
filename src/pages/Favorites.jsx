@@ -2,24 +2,26 @@ import { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
+ /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import FavoriteCard from '../components/FavoriteCard'
 import { Card, Button } from 'antd'
 
 import { selectfavorites } from '../redux/favoriteSlice'
 import { addToFavorites } from '../redux/favoriteSlice'
+import {removeFromFavorites} from '../redux/favoriteSlice'
 
 export default function favorites(items) {
     const {name} = items;
     const dispatch = useDispatch();
     const favorites = useSelector(selectfavorites)
 
-    const handleAddToFavorites = () => {
-        dispatch(addToFavorites({name: "test", id: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Temp_plate.svg/2560px-Temp_plate.svg.png"}));
+    const handleAddToFavorites = (name, id) => {
+        dispatch(addToFavorites({name, id}));
     }
 
 
-    const removeFromFavorites = (name) => {
+    const handleRemoveFromFavorites = (name) => {
         dispatch(removeFromFavorites(name));
     }
 
@@ -59,21 +61,20 @@ export default function favorites(items) {
     return (
         <div>
             <h1>Favorites</h1>
-            <button onClick={handleAddToFavorites}>Add to Favorites</button>
             {favorites.map((item, index) => (
-                <Card key={item.id} style={{ width: 300, margin: '10px' }}>
+                <Card key={index} style={{ width: 300, margin: '10px' }}>
                     <div css={image_container}>
                         <img
-                            src = {item.id}
+                            src={item.id}
                             alt="Item img"
-                            css = {image_style}
+                            css={image_style}
                         />
                     </div>
                     <div css={{fontsize: '14px'}}>
                         <p>Name: {item.name}</p>
                     </div>
                     <div>
-                        <button css={remove_button} onClick={() => HandleremoveFromFavorites(item.id)}>
+                        <button css={remove_button} onClick={() => handleRemoveFromFavorites(item.id)}>
                             Remove
                         </button>
                     </div>
