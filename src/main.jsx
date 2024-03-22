@@ -10,7 +10,7 @@ import RandomSearch from './pages/RandomSearch'
 import RecipeDetails from './pages/RecipeDetails'
 
 import { Provider } from 'react-redux'
-import store from '/redux/store'
+import store from './redux/store'
 
 
 import { Root, Home, ErrorPage } from './Routes'
