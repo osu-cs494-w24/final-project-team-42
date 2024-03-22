@@ -7,13 +7,23 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 // import App from './App'
 import FetchSearch from './pages/Search'
 import RandomSearch from './pages/RandomSearch'
+import RecipeDetails from './pages/RecipeDetails'
+
+import { Root, Home, ErrorPage } from './Routes'
 
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <RandomSearch />,
+        element: <Root />,
+        errorElement: <Root><ErrorPage /></Root>,
+        children: [
+            { index: true, element: <Home /> },
+            { path: "search", element: <FetchSearch /> },
+            { path: "search/:recipe", element: <RecipeDetails /> },
+            { path: "random-recipe", element: <RandomSearch /> }
+        ]
     }
 ])
 
