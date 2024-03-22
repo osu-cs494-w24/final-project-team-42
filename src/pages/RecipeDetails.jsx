@@ -5,31 +5,6 @@ import styled from '@emotion/styled'
 const API_KEY = 'eeccfccae4944843a48b3f867c77363e' // nicolas' api key
 // '0d276903bc344aedb88273ff17d9be70'
 
-const recipeDetails = {
-    title: "Spaghetti Carbonara",
-    image: "https://spoonacular.com/recipeImages/715538-312x231.jpg",
-    readyInMinutes: 45,
-    servings: 4,
-    pricePerServing: 2.50,
-    instructions: "<ol><li>Cook the pasta according to the package instructions.</li><li>Meanwhile, in a large skillet, cook the bacon over medium heat until crisp, about 8 minutes.</li><li>Add the garlic and cook for 1 minute.</li><li>Remove from the heat. In a medium bowl, whisk together the eggs, Parmesan, and pepper.</li><li>Drain the pasta, reserving 1 cup of the cooking water.</li><li>Add the pasta to the bacon mixture and toss to combine.</li><li>Add the egg mixture and 1/2 cup of the reserved cooking water. Toss until the sauce thickens, adding more cooking water as needed. Serve with additional Parmesan and pepper.</li>",
-    extendedIngredients: [
-        { id: 1, name: "spaghetti" },
-        { id: 2, name: "bacon" },
-        { id: 3, name: "garlic" },
-        { id: 4, name: "eggs" },
-        { id: 5, name: "Parmesan" },
-        { id: 6, name: "pepper" }
-    ],
-    nutrition: {
-        nutrients: [
-            { name: "Calories", amount: 500, unit: "cal" },
-            { name: "Fat", amount: 20, unit: "g" },
-            { name: "Carbs", amount: 50, unit: "g" },
-            { name: "Protein", amount: 30, unit: "g" }
-        ]
-    }
-}
-
 const Body = styled.div`
     padding: 2rem;
     /* background-image: linear-gradient(45deg, lightgreen, lightblue); */
@@ -91,10 +66,10 @@ export default function RecipeDetails() {
 
     const fetchRecipeDetails = async (id) => {
         try {
-            // const response = await fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${API_KEY}&includeNutrition=true`)
-            // const data = await response.json()
-            // setRecipeDetails(data)
-            // console.log(data)
+            const response = await fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${API_KEY}&includeNutrition=true`)
+            const data = await response.json()
+            setRecipeDetails(data)
+            console.log(data)
         } catch (error) {
             console.error(error)
         }   
@@ -104,7 +79,7 @@ export default function RecipeDetails() {
     return (
         <Body>
             <h1>Recipe Details</h1>
-            {/* {recipeDetails ? 
+            {recipeDetails ? 
                 (<form onSubmit={(e) => {
                     e.preventDefault()
                     console.log("Added favorite: ", recipeDetails)
@@ -114,7 +89,7 @@ export default function RecipeDetails() {
                     <StyledButton>Add to Favorites</StyledButton>
                 </form>)
 
-             : (null)} */}
+             : (null)}
 
             {recipeDetails ? (
                 <div>

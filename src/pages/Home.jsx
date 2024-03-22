@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 
-// const API_KEY = 'abd43a26c5aa46e1b48bd1f860160d44'
+const API_KEY = 'abd43a26c5aa46e1b48bd1f860160d44'
 // const API_KEY = 'eeccfccae4944843a48b3f867c77363e' // nicolas' api key
 // const API_KEY = '0d276903bc344aedb88273ff17d9be70' // jacob's api key
 
